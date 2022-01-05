@@ -70,6 +70,28 @@ public class DynamicHttpServer extends CordovaPlugin {
             }
             return true;
         }
+        else if (action.equals ("stopServer")) {
+            if (args.length() == 0)
+            {
+                callbackContext.error ("Missing arguments to sendResponse");
+                return true;
+            }
+            ServerContext server = servers.get (args.getString(0));
+            if (server == null)
+            {
+                callbackContext.error ("Unrecognised server id");
+                return true;
+            }
+            try
+            {
+                server.stop ();
+                callbackContext.success ();
+            }
+            catch (Exception e) {
+                callbackContext.error (e.toString());
+            }
+            return true;
+        }
         return false;
     }
 
@@ -106,6 +128,10 @@ public class DynamicHttpServer extends CordovaPlugin {
         {
             this.serverId = serverId;
             server.start (30000, true);
+        }
+        public void stop () throws IOException
+        {
+            server.stop ();
         }
         public synchronized Response handle (IHTTPSession request)
         {
