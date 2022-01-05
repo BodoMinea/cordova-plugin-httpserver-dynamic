@@ -16,7 +16,7 @@ Alternatively, if you want to track changes directly from the git repository, us
 a github URL as the source:
 
 ```
-$ cordova plugin add https://github.com/jh3141/cordova-plugin-httpserver-dynamic:plugin
+$ cordova plugin add https://github.com/BodoMinea/cordova-plugin-httpserver-dynamic:plugin
 ```
 
 After installation, it's probably a good idea to save your plugin configuration to
